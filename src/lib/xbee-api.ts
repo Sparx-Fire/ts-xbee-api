@@ -176,6 +176,7 @@ export class XBeeParser
       }
 
       if (S.escape_next) {
+        S.total += C.ESCAPE + S.b - (0x20 ^ S.b); // Adjust total to equal unescaped bytes for checksum
         S.b = 0x20 ^ S.b;
         S.escape_next = false;
       }
